@@ -1,55 +1,30 @@
-import unittest
+def get_student_score():
+    while True:
+        try:
+            score = float(input("Enter the student's score: "))
+            if 0 <= score <= 100:
+                return score
+            else:
+                print("Please enter a score between 0 and 100.")
+        except ValueError:
+            print("Invalid input. Please enter a numerical value.")
 
-def get_student_grade(score):
-    """Calculates the grade based on the given score."""
-    if not 0 <= score <= 100:
-        return "Invalid Score"
+def calculate_grade(score):
     if score >= 90:
         return 'A'
-    if score >= 80:
+    elif score >= 80:
         return 'B'
-    if score >= 70:
+    elif score >= 70:
         return 'C'
-    if score >= 60:
+    elif score >= 60:
         return 'D'
-    return 'F'
+    else:
+        return 'F'
 
 def main():
-    """Main function to demonstrate the grading."""
-    score = 85  # Example score
-    grade = get_student_grade(score)
+    score = get_student_score()
+    grade = calculate_grade(score)
     print(f"The student's grade is: {grade}")
 
-class TestGrading(unittest.TestCase):
-    """Unit tests for the grading functions."""
-
-    def test_calculate_grade_a(self):
-        self.assertEqual(get_student_grade(95), 'A')
-
-    def test_calculate_grade_b(self):
-        self.assertEqual(get_student_grade(85), 'B')
-
-    def test_calculate_grade_c(self):
-        self.assertEqual(get_student_grade(75), 'C')
-
-    def test_calculate_grade_d(self):
-        self.assertEqual(get_student_grade(65), 'D')
-
-    def test_calculate_grade_f(self):
-        self.assertEqual(get_student_grade(55), 'F')
-
-    def test_calculate_grade_zero(self):
-        self.assertEqual(get_student_grade(0), 'F')
-
-    def test_calculate_grade_hundred(self):
-        self.assertEqual(get_student_grade(100), 'A')
-
-    def test_calculate_grade_invalid_negative(self):
-        self.assertEqual(get_student_grade(-10), "Invalid Score")
-
-    def test_calculate_grade_invalid_over_hundred(self):
-        self.assertEqual(get_student_grade(110), "Invalid Score")
-
-if _name_ == "_main_":
-    unittest.main(argv=['first-arg-is-ignored'], exit=False) # run all tests
-    main() # run the main function.
+if __name__ == "__main__":
+    main()
